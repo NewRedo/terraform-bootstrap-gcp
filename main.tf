@@ -1,7 +1,9 @@
 terraform {
   required_version = ">= 1.5.7"
 }
-
+variable "project" {
+  type = string
+}
 variable "bucket_prefix" {
   type = string
 }
@@ -12,6 +14,10 @@ variable "bucket_location" {
 variable "storage_class" {
   type    = string
   default = "REGIONAL"
+}
+
+provider "google" {
+  project = var.project
 }
 
 resource "random_uuid" "bucket_suffix" {}
